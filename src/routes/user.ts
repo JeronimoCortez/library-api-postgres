@@ -1,16 +1,15 @@
 import express from "express";
 import {
   deleteUser,
-  register,
   updateUser,
   user,
   users,
 } from "../controllers/userController";
+import { authenticationToken } from "../services/user.service";
 
 export const userRoutes = express.Router();
 
 userRoutes.get("/", users);
 userRoutes.get("/:id", user);
-userRoutes.post("/register", register);
-userRoutes.put("/:id", updateUser);
-userRoutes.delete("/:id", deleteUser);
+userRoutes.put("/:id", authenticationToken, updateUser);
+userRoutes.delete("/:id", authenticationToken, deleteUser);
